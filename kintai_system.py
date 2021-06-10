@@ -1,26 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[168]:
 
-
-pwd
-
-
-# In[148]:
 
 
 import pandas as pd
-import numpy as np
-import csv
-#import re
-#from datetime import datetime
-#from datetime import timedelta
 
 
-# ### NICTのcsv読み込み
 
-# In[167]:
+
+
 
 
 # 勤怠システムの読み込み
@@ -34,7 +23,7 @@ Ym = df.iloc[3,4]
 year = Ym[0:4]
 month = Ym[5:7].lstrip('0')
 
-Ym = year + '/' + month +'/'
+Ym = f'{year}/{month}/'
 
 
 # ここから勤怠システムを整形
@@ -62,9 +51,6 @@ df['昼休み'] = df['昼休み'].apply(lambda x: str(x).replace('h',':').replac
 df = df[['年月日','曜日','開始','終了','所定時間','超過勤務','昼休み']]
 
 
-# ### テキストファイルの作成
-
-# In[165]:
 
 
 # 年月日の一覧を作ります。
@@ -77,7 +63,7 @@ with open('年月日一覧.txt', mode='w') as f:
     f.write(text_1_to_output)
 
 
-# In[ ]:
+
 
 
 # 変更点１で直接Serieseに「：００」を結合させたため関数は今回は使わないことにしました。
@@ -97,7 +83,6 @@ def convert_for_xls(cell_value):
 """
 
 
-# In[166]:
 
 
 # 変更点２：関数を使わなくて良くなったことと、row[[]]というフィルターをかけて必要なSeriesのみ抽出
@@ -108,7 +93,7 @@ with open('開始から昼休み一覧.txt', mode='w') as f:
     f.write(text_2_to_output)
 
 
-# In[163]:
+
 
 
 """
@@ -135,7 +120,7 @@ with open('開始から昼休み一覧.txt', mode='w') as f:
 """
 
 
-# In[ ]:
+
 
 
 
